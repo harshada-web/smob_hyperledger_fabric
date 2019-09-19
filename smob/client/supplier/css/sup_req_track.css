@@ -1,0 +1,145 @@
+img {
+  height: 55px;
+  width: 150px;
+  float:left;
+   }
+
+/* Right-aligned section inside the top navigation*/
+.topnav-right {
+  float: right;
+  text-align: center;
+  font-size: 17px;
+
+} 
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+ 
+
+ /* Add a black background color to the top navigation */
+.topnav {
+  background-color: black;
+  overflow: hidden;
+  height: 55px;
+  padding: 10px 10px;
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>CONTAINER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+
+.vl {
+  border-left: 6px solid green;
+  height: 2000px;
+  width: 10px;
+}
+
+
+.request{
+  font-size: 17px;
+  border: solid black;
+  padding: 9px;
+  border-radius: 200px;
+  border-width: 2px;
+  padding: 20px;
+  color: black;
+  width: 174px;
+  height: 13px;
+  line-height: 2px;
+  text-align: center;
+  margin-top: 10px; 
+}
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>PROGRESS TRACKER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */    
+
+
+.line{
+border-left: 1px solid black;
+height: 55px;
+margin-left: 5pc;
+
+}
+.line1{
+border-left: 1px solid black;
+height: 90px;
+margin-left: 5pc;
+margin-top: -9pc;
+}
+#ok{
+position: relative;
+  top: 0px;
+  left: 53px;
+  display: inline-block;
+  font-family: "Glyphicons Halflings";
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 24px;
+  color: black;
+}
+
+h5{
+display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
+  margin-left: 60px;
+  margin-top: 3px
+}
+#panel{
+/* margin-left: 97px;
+width: 51pc;
+height: 6pc; */
+margin-left: 104px;
+width: 51pc;
+height: 6pc;
+margin-top: -5px;
+}
+
+#panel1{
+width: 303px;
+  margin-left: -82px;
+  height: -webkit-fill-available;
+}
+.req_date{
+margin-left: 107px;
+}
+
+table thead tr 
+{
+text-align: center;
+}
+
+#back_arrow{
+font-size: 23px;
+top: 8px;
+}
+
+h3{
+margin-top: -21px;
+margin-bottom: 10px;
+margin-left: 39px;
+font-weight: bold;
+text-align: initial;
+}
+.field_val{
+margin-top: 5pc;
+}
+
+#quote
+  {
+  display: none;
+  }
+.action{
+  margin-left: 24pc;
+  margin-top: -34px;
+}
+

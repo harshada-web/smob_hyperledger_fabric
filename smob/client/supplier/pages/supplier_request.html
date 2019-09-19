@@ -1,0 +1,45 @@
+
+<link rel="stylesheet" type="text/css" href="req_sent.css">
+
+      <div class="container">
+        
+          <div class="align_">
+              <p>Requests from Manufacturer</p>
+            <button type="button" onclick="window.location='#!supplier_dashboard';" class="button"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+               BACK</button>
+        </div>
+        <div><hr></div>
+        <table class="table" ng-init="showData()">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Date</th>
+                <th>Supplier Requested</th>
+                <th>Material Type</th>
+                <th>Quantity</th>
+                <th>Shipping Address</th>
+                <th>Requested Delivery</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody ng-repeat="data in datas">
+
+              <tr style="cursor: pointer;" ng-click="SingleRequest(data)"> 
+                
+                <td>{{ data.req_id }}</td>
+                <td>{{ data.current_date }}</td>
+                <td>{{ data.supplier_name }}</td>
+                <td>{{ data.item_name }}</td>
+                <td>{{ data.quantity }}</td>
+                <td>{{ data.address }}</td>
+                <td>{{ data.raised_by }}</td>
+                <td>{{ data.status }}</td>
+              
+              </tr> 
+            
+
+            </tbody>
+          </table>
+
+      </div>
+    

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./req_track.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+</head>
+<body>
+
+          <div class="container" ng-init="geoLocation()">
+                <div class="row">
+                    <br>
+                    <div class="col-md-3" style="height:800px; border-width:1px; border-right:2px solid grey;">
+                    <div class="panel panel-default" id="panel1">
+                    <div class="panel-body">
+					
+						<div style="cursor: pointer;" onclick="window.location='#!retailer_request';">
+                        <span class="glyphicon glyphicon-arrow-left" aria-hidden="true" id="back_arrow"></span>
+                        <h3>REQUEST ID - {{req_id}}</h3>
+						</div>
+						
+                        </div>
+                        </div>
+                </div>
+
+
+                <div class="col-md-6" style="margin-top: 50px;">
+                    <div class="action">
+                      <button type="button" ng-if="acpt_btn" class="btn btn-dark" ng-click="acceptQuotation()">Accept</button>
+                      <button type="button" ng-if="acpt_btn" class="btn btn-dark" ng-click="rejectQuotation()">Reject</button>
+                      <button type="button" data-toggle="modal" data-target="#myModal" ng-if="PO_btn" class="btn btn-danger" >Place Order</button>
+                      <button type="button" data-toggle="modal" data-target="#myModal1" ng-if="pay_btn" class="btn btn-danger" ng-click="paymentModal()">Make Payment</button>
+                    </div>
+                <div class="request">PROGRESS</div>
+                <div class="line"></div>
+                <div class="col-sm-1"><span class="glyphicon glyphicon-ok-sign" id="ok"></span></div>
+                
+                <h5 class="">Request Created:</h5>
+                     <p class="req_date">{{ current_date }}</p>
+                
+
+                <div class="panel panel-default" id="panel">
+                    <div class="panel-body">
+                            <table class="table table-borderless">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Mateial Type</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Manufacturer</th>
+                                        <th scope="col">Requested Delivery</th>
+                                        <th scope="col">Shipping Address</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody ng-repeat="data in allItems">
+                                            <tr>
+                                              <td>{{ data.item_name }}</td>
+                                              <td>{{ data.quantity }}</td>
+                                              <td>{{ data.manufacturer_name }}</td>
+                                              <td>{{ data.current_date }}</td>
+                                              <td>{{ data.address }}</td>
+                                            </tr>
+                            </table>
+                    </div>
+                  </div>
+
+                  <!-- NEW  -->
+                  <div ng-if="quote">
+
+                   <div class="line1"></div>
+                  <div class="line"></div>
+                  <div class="col-sm-1"><span class="glyphicon glyphicon-ok-sign" id="ok"></span></div>
+                  <h5 class="">Quotation Created:</h5>
+                       <p class="req_date">{{ current_date }}</p>
+                  
+  
+                  <div class="panel panel-default" id="panel">
+                      <div class="panel-body">
+                              <table class="table table-borderless">
+                                      <thead>
+                                        <tr>
+                                          <th scope="col">Quotation ID</th>
+                                          <th scope="col">Quotation Date</th>
+                                          <th scope="col">Unit Price</th>
+                                          <th scope="col">Total Price</th>
+
+                                        </tr>
+                                      </thead>
+                                      <tbody  ng-repeat="data in quo_datas">
+                                              <tr>
+                                                <td>{{ data.quotation_id }}</td>
+                                                <td>{{ data.quotation_date }}</td>
+                                                <td>{{ data.unit_price }}</td>
+                                                <td>{{ data.total_price }}</td>
+
+                                              </tr>
+                              </table>
+                      </div>
+                    </div>
+
+
+                  </div>
+               <!-- NEW -->
+
+                
+                <!-- NEW  -->
+                <div ng-if="order">
+
+                    <div class="line1"></div> 
+                    <div class="line"></div>
+
+                <div class="line1"></div>
+                <div class="line"></div>
+                <div class="col-sm-1"><span class="glyphicon glyphicon-ok-sign" id="ok"></span></div>
+                <h5 class="">Purchase Order Created:</h5>
+                     <p class="req_date">{{ current_date }}</p>
+                
+
+                <div class="panel panel-default" id="panel">
+                    <div class="panel-body">
+                            <table class="table table-borderless">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Order ID</th>
+                                        <th scope="col">Order Date</th>
+
+                                      </tr>
+                                    </thead>
+                                    <tbody ng-repeat="data in order_datas">
+                                            <tr>
+                                              <td>{{ data.order_id }}</td>
+                                              <td>{{ data.order_date }}</td>
+
+                                            </tr>
+                            </table>
+                    </div>
+                  </div>
+
+                </div>
+              <!-- NEW -->
+
+
+              <!-- NEW  -->
+              <div ng-if="invoice">
+
+              <div class="line1"></div> 
+              <div class="line"></div>
+              <div class="col-sm-1"><span class="glyphicon glyphicon-ok-sign" id="ok"></span></div>
+              <h5 class="">Invoice Created:</h5>
+                   <p class="req_date">{{ current_date }}</p>
+              
+
+              <div class="panel panel-default" id="panel">
+                  <div class="panel-body">
+                          <table class="table table-borderless">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Invoice ID</th>
+                                      <th scope="col">Invoice Date</th>
+                                      <th scope="col">Total Price</th>
+
+                                    </tr>
+                                  </thead>
+                                  <tbody ng-repeat="data in invoice_datas">
+                                          <tr>
+                                            <td>{{ data.invoice_id }}</td>
+                                            <td>{{ data.invoice_date }}</td>
+                                            <td>{{ data.total_price }}</td>
+
+                                          </tr>
+                          </table>
+                  </div>
+                </div>
+              
+              </div>
+            <!-- NEW -->
+
+
+            <!-- NEW  -->
+            <div ng-if="logistic">
+
+              <div class="line1"></div> 
+              <div class="line"></div>
+              <div class="col-sm-1"><span class="glyphicon glyphicon-ok-sign" id="ok"></span></div>
+              <h5 class="">Logistics Info:</h5>
+                   <p class="req_date">{{ current_date }}</p>
+              
+
+              <div class="panel panel-default" id="panel">
+                  <div class="panel-body">
+                          <table class="table table-borderless">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">Delivery ID</th>
+                                      <th scope="col">Shipping Address</th>
+                                      <th scope="col">Logistics</th>
+                                      <th scope="col">Expected Delivery</th>
+                                      <th scope="col">Status</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody ng-repeat="data in logistic_datas">
+                                          <tr>
+                                            <td>{{ data.id }}</td>
+                                            <td>{{ data.shipping_address }}</td>
+                                            <td>Leading Forward Logistics</td>
+                                            <td>{{ data.expected_date }}</td>
+                                            <td>{{ data.status }}</td>
+                                          </tr>
+                          </table>
+                  </div>
+                </div>
+              
+              </div>
+            <!-- NEW -->
+
+
+            <!-- NEW  -->
+            <div ng-if="payment">
+
+                <div class="line1"></div> 
+            <div class="line"></div>
+            <div class="col-sm-1"><span class="glyphicon glyphicon-ok-sign" id="ok"></span></div>
+            <h5 class="">Payment Created:</h5>
+                 <p class="req_date">{{ current_date }}</p>
+            
+
+            <div class="panel panel-default" id="panel">
+                <div class="panel-body">
+                        <table class="table table-borderless">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Payment ID</th>
+                                    <th scope="col">Payment Date</th>
+                                    <th scope="col">Payment Method</th>
+                                    <th scope="col">Total Price</th>
+                                  </tr>
+                                </thead>
+                                <tbody ng-repeat="data in pay_datas">
+                                        <tr>
+                                          <td>{{ data.payment_id }}</td>
+                                          <td>{{ data.payment_date }}</td>
+                                          <td>{{ data.payment_method }}</td>
+                                          <td>{{ data.total_price }}</td>
+
+                                        </tr>
+                        </table>
+                </div>
+              </div> 
+              
+              </div>
+<!--NEW -->
+            
+
+                </div>
+          </div>
+          </div>
+
+
+
+          <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="font-size: 24px; margin-top:10px; margin-bottom:10px ">Purchase Order Modal</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form>
+                
+                <div class="form-group">
+                  <div class="row">
+                     
+                    <div class="col-md-6">
+                  <label class="bmd-label-floating" id="feild">Order ID</label>
+                  <input type="text" class="form-control" id="input1" ng-model="req_id" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="bmd-label-floating" id="feild">Order Date</label>
+                    <datepicker date-format="dd/MM/yyyy">
+                      <input ng-model="po_date" type="text" class="form-control" id="input1" placeholder="Date"/>
+                    </datepicker>
+                  </div>
+                </div>
+                </div>
+
+              </form>
+
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub" data-dismiss="modal" ng-click="placeorderRaised(req_id,po_date)">Place Order</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub">Close</button>
+        </div>    
+        </div>                
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+         <!-- The Modal1 -->
+  <div class="modal fade" id="myModal1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" style="font-size: 24px; margin-top:10px; margin-bottom:10px ">Payment</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+            <form>
+                
+                <div class="form-group">
+                  <div class="row">
+                     
+                    <div class="col-md-6">
+                  <label class="bmd-label-floating" id="feild">Payment ID</label>
+                  <input type="text" class="form-control" id="input1" ng-model="req_id" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="bmd-label-floating" id="feild">Payment Date</label>
+                    <datepicker date-format="dd/MM/yyyy">
+                      <input ng-model="pay_date" type="text" class="form-control" id="input1" placeholder="Date"/>
+                    </datepicker>
+                  </div>
+                </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group bmd-form-group">  
+                        <label class="bmd-label-floating" id="feild">Payment Method</label><br>
+                        <input list="hosting-plan" type="text" ng-model="pay_mode" id="input1">
+                        <datalist id="hosting-plan">
+                           <option value="COD" />
+                           <option value="Debit Card" />
+                           <option value="Credit Card" />
+                           <option value="Net Banking" />
+                        </datalist>
+                      </div>
+                    </div>
+              <div class="col-md-6">
+                  <div class="form-group bmd-form-group" >  
+                    <label class="bmd-label-floating" id="feild">Total Price</label>
+                    <input type="text" class="form-control" id="input1" ng-model="totalPrice" readonly>
+                  </div>
+                </div>
+              </div>
+
+              </form>
+
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub" data-dismiss="modal" ng-click="Payment(req_id,pay_date,pay_mode,totalPrice)">PAY</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub">Close</button>
+        </div>    
+        </div>                
+        
+      </div>
+    </div>
+  </div>
+
+
+
+
+</body>
+</html>

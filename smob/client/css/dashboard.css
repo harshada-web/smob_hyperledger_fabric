@@ -1,0 +1,113 @@
+img {
+    height: 55px;
+    width: 150px;
+    float:left;
+     }
+
+/* Right-aligned section inside the top navigation*/
+.topnav-right {
+    float: right;
+    text-align: center;
+    font-size: 17px;
+
+  } 
+ 
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+   
+
+   /* Add a black background color to the top navigation */
+.topnav {
+    background-color: black;
+    overflow: hidden;
+    height: 55px;
+    padding: 10px 10px;
+}
+
+
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Heading<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< */
+h4{
+    font-size: 21px;
+    margin-top: 17px;
+    
+}
+#panel{
+    height:34pc;
+}
+
+h5{
+    font-size: 17px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.input-group{
+    width:60%;
+    margin-left:130px;
+    margin-top: -45px;
+}
+table thead{
+    text-align: center;
+}
+table{
+    margin-top: 22px;
+}
+#circle{
+    font-size: 20px;
+}
+p{
+    font-size: 16px;
+    font-weight: bold;
+    margin-left: 36px;
+    margin-top: -25px;
+    margin-bottom: -1px;
+}
+
+.line{
+    border-left: 2px solid black;
+    height: 55px;
+    margin-left: 9px;
+    margin-top: -44px;
+  }
+  /* label{
+      margin-left: 36px;
+      margin-bottom: 0px
+  } */
+  h6{
+    font-size: 15px;
+    margin-left: 108px;
+    margin-top: -18px;
+}
+  
+.view{
+    margin-top: -40px;
+    float: right;
+    text-decoration: underline;
+}
+.p1{
+    margin-top: 10px;}
+
+.p2{
+    margin-left: 208px;
+    margin-top: -30px;
+}
+.v1{
+    font-size: 16px;
+    margin-left: 115px;
+    margin-top: -19px;
+}
+.v2
+{
+    font-size: 16px;
+    margin-left: 289px;
+    margin-top: -19px;
+}
+td{
+    text-align: left;
+}

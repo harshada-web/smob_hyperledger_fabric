@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="new_req.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Dashboard</title>
+</head>
+        <body>
+
+            <div class="container">
+                
+
+               <h4>Retailer</h4>
+
+               <hr>
+               <div class="col-md-5">
+                    <div class="panel panel-default" id="panel">
+                            <div class="panel-body">
+                                <h5>Requests to Manufacturer</h5>
+                                <a href="#!retailer_request"><p class="view">View All</p></a>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>PAYMENTS</P>
+                                <p class="p1">Initiated:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Received:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>INVOICES</P>
+                                <p class="p1">Raised:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Approved:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                               
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>PURCHASE ORDERS</P>
+                                <p class="p1">Received:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Accepted:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>QUOTATIONS</P>
+                                <p class="p1">Raised:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Accepted:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>REQUESTS</P>
+                                <p class="p1">Received:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Accepted:</p>
+                                     <h6 class="v2">12</h6> 
+                                
+                            </div>
+                    </div>
+               </div>
+
+               <div class="col-md-7">
+                    <div class="panel panel-default" id="panel">
+                            <div class="panel-body">
+                                <h5>Manufacturer Inventory</h5>
+                                <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="search" placeholder="Search">
+                                        <div class="input-group-btn">
+                                          <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                </div>
+                                <table class="table" ng-init="showData()">
+                                        <thead>
+                                          <tr>
+                                            <th>Item Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price -/Unit</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody  ng-repeat="data in allItems | filter:search">
+                                          <tr style="cursor: pointer">
+                                            <td data-toggle="modal" data-target="#myModal" ng-click="getSingle(data)">{{ data.item_name }}</td>
+                                            <td>{{ data.quantity }}</td>
+                                            <td>{{ data.price }}</td>
+                                          </tr>
+                                         
+                                        </tbody>
+                                      </table>
+                            </div>
+                    </div>
+               </div>
+            </div>
+
+
+
+          <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" style="font-size: 24px; margin-top:10px; margin-bottom:10px ">New Request</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body" ng-repeat="data in datas">
+              <form>
+                  
+                  <div class="form-group">
+                    <div class="row">
+                       
+                      <div class="col-md-6">
+                    <label class="bmd-label-floating" id="feild">Material Type</label>
+                    <input type="text" class="form-control" id="input1" ng-model="data.item_name" readonly>
+                  </div>
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating" id="feild">Quantity</label>
+                      <input type="number" class="form-control" id="input1" ng-model="quantity" ng-minlength="1" ng-maxlength="3" min="1" max="999">
+                    </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group bmd-form-group">  
+                    <label class="bmd-label-floating" id="feild">Delivery By</label>
+                    <input type="text" class="form-control" id="input1" ng-model="manufacturer_name" readonly>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group bmd-form-group" >  
+                      <label class="bmd-label-floating" id="feild">Last Date For Quotation</label>
+                      <datepicker date-format="dd/MM/yyyy">
+                        <input ng-model="quote_date" type="text" class="form-control" id="input1" placeholder="Date"/>
+                      </datepicker>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                    <div class="form-group bmd-form-group">  
+                      <label class="bmd-label-floating" id="feild">Shipping Address</label>
+                      <input type="text" class="form-control" id="input1" ng-model="userAddress" readonly
+                    </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group bmd-form-group">  
+                        <label class="bmd-label-floating" id="feild">Shipped From</label>
+                        <input type="text" ng-model="manufacturer_address" class="form-control" id="input1" readonly>
+                      </div>
+                    </div>
+                  
+                </div>
+                </form>
+
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub" data-dismiss="modal" ng-click="request(data,quantity,quote_date)">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub">Close</button>
+          </div>    
+          </div>                
+          
+        </div>
+      </div>
+    </div>
+     
+       
+       
+        </body>
+</html>

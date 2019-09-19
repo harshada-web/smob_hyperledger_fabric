@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hyperledger</title>
+
+    <!-- Font awesome.css  -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Angular JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+
+</head>
+<body ng-app="myApp">
+    
+	<div class="container" ng-controller="appCtrl">
+        <h1>{{ msg }}</h1>
+        <button class="btn btn-danger" ng-click="getData()">QUERY</button>
+        
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Car Key</th>
+                <th>Color</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Owner</th>
+              </tr>
+            </thead>
+            <!-- <tbody> -->
+            <tbody ng-repeat="data in datas">
+                <tr>
+                    <!-- <td>{{datas.color}}</td>
+                    <td>{{datas.make}}</td>
+                    <td>{{datas.model}}</td>
+                    <td>{{datas.owner}}</td> -->
+                    <td>{{data.Key}}</td>
+                    <td>{{data.Record.material}}</td>
+                    <td>{{data.Record.sender}}</td>
+                    <td>{{data.Record.model}}</td>
+                    <td>{{data.Record.owner}}</td>
+ 
+                </tr>
+              </tbody>
+
+          </table>
+          <h3>POST DATA</h3>
+          
+            <label>Car Key=</label><input type="text" ng-model="car_key" required><br>
+            <label>Color=</label><input type="text" ng-model="color" required><br>
+            <label>Make=</label><input type="text" ng-model="make" required><br>
+            <label>Model=</label><input type="text" ng-model="model" required><br>
+            <label>Owner=</label><input type="text" ng-model="owner" required><br> 
+            <button class="btn btn-danger" ng-click="postData(car_key,color,make,model,owner)">Post Data</button>
+          
+
+	</div>
+
+<script src="app.js"></script>
+</body>
+</html>

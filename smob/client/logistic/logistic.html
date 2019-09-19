@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Page Title</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="logistic.css"></link>
+</head>
+<body>
+
+    <div class="container"> 
+      <div class="align_">
+        <h1>Logistics</h1>  
+      </div>
+
+      <div> <hr> </div><br>
+      
+      <table class="table" align="center" cellpadding="7">
+          <thead>
+           
+            <tr>
+              <th>Delivery ID</th>
+              <th>Date</th>
+              <th>Requester</th>
+              <th>Shipping Address</th>
+		          <th>Logistics</th>
+              <th>Status</th>
+		          <th>Expected Delivery</th>
+            </tr>
+          </thead>
+          <tbody ng-repeat="data in datas">
+           
+            <tr style="cursor: pointer" data-toggle="modal" data-target="#myModal" ng-click="getData(data.id)"> 
+              <td>{{ data.id }}</td>
+              <td>{{ data.current_date }}</td>
+              <td>{{ data.requester }}</td>
+              <td>{{ data.shipping_address }}</td>
+	            <td>Leading Forward Logistics</td>
+              <td>{{ data.status }}</td>
+              <td>{{ data.expected_date }}</td>
+            </tr> 
+          </tbody>
+        </table>
+    </div>
+    
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title" style="font-size: 24px; margin-top:10px; margin-bottom:10px ">Request Tracking {{ singleData[0].id }}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+
+                  <div class="row">
+                  <ul class="progressbar" style="margin-top: 27px">
+                      <li class="active" style="margin-left:-5pc "><h4>Processing</h4></li>
+                      <li ng-class="class1"><h4>Packed</h4></li>
+                      <li ng-class="class2"><h4>Dispatched</h4></li>
+                      <li ng-class="class3"><h4>Delivered</h4></li>
+                  </ul>
+                  </div>
+                  <!-- <div class="row"> -->
+                    <div class="container"> 
+
+                    <!-- <div class="col-2"></div> -->
+
+                    <div>
+                        <div><button class ="btn btn-success w-100" ng-if="pack" ng-click="packed()">Order Packed</button></div>
+                        <div><button class ="btn btn-success w-100" ng-if="dispatch" ng-click="dispatched()">Order Dispatched</button></div>
+                        <div><button class ="btn btn-success w-100" ng-if="deliver" ng-click="delivered()">Order Delivered</button></div>
+                    </div>
+
+                  <div ng-if="ex_date">
+                    <datepicker date-format="dd/MM/yyyy">
+                      <input ng-model="exdate" type="text" class="form-control w-100" placeholder="Expected Date of Delivery !"/>
+                      <div class="" ng-if="ex_date">
+                        <button type="button" class="btn btn-primary w-100" ng-disabled="!exdate" ng-click="exDate(exdate)">Submit</button>
+                      </div>
+                    </datepicker>
+                  </div>
+                  
+                  
+              
+                  </div>
+                  
+
+                  <div style="height: 24pc;width: 30pc;margin-top: 50px;margin-left: 88px;" id="mapholder">
+                  </div>
+
+              </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub">Close</button>
+            </div>    
+                            
+            
+          </div>
+        </div>
+      </div>
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="new_req.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Dashboard</title>
+</head>
+        <body>
+
+            <div class="container">
+                
+                <div style="margin-top: 50px;">
+               <h4 style="display: inline">Supplier</h4>
+               <button style="float: right" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle" aria-hidden="true"> ADD</i>
+                </button> 
+                </div>
+                
+               <hr>
+               <div class="col-md-5">
+                    <div class="panel panel-default" id="panel">
+                            <div class="panel-body">
+                                <h5>Requests From Manufacturer</h5>
+                                <a href="#!supplier_request"><p class="view">View All</p></a>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>PAYMENTS</P>
+                                <p class="p1">Initiated:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Received:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>INVOICES</P>
+                                <p class="p1">Raised:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Approved:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                               
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>PURCHASE ORDERS</P>
+                                <p class="p1">Received:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Accepted:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>QUOTATIONS</P>
+                                <p class="p1">Raised:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Accepted:</p>
+                                     <h6 class="v2">12</h6> 
+                                <div class="line"></div>
+                                <span class="glyphicon glyphicon-record" id="circle"></span>
+                                <P>REQUESTS</P>
+                                <p class="p1">Received:</p>
+                                  <h6 class="v1">1</h6> 
+                                <p class="p2">Accepted:</p>
+                                     <h6 class="v2">12</h6> 
+                                
+                            </div>
+                    </div>
+               </div>
+
+               <div class="col-md-7">
+                    <div class="panel panel-default" id="panel">
+                            <div class="panel-body">
+                                <h5>Supplier Inventory</h5>
+                                <div class="input-group">
+                                        <input type="text" class="form-control" ng-model="search" placeholder="Search">
+                                        <div class="input-group-btn">
+                                          <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                        </div>
+                                </div>
+                                <table class="table" ng-init="showData()">
+                                        <thead>
+                                          <tr>
+                                            <th>Item Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price -/Unit</th>
+                                            <th>Description</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody ng-repeat="data in allItems | filter:search">
+                                          <tr>
+                                            <td>{{ data.item_name }}</td>
+                                            <td>{{ data.quantity }}</td>
+                                            <td>{{ data.price }}</td>
+                                            <td>{{ data.description }}</td>
+                                          </tr>
+                                         
+                                        </tbody>
+                                      </table>
+                            </div>
+                    </div>
+               </div>
+            </div>
+
+
+               <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title" style="font-size: 24px; margin-top:10px; margin-bottom:10px ">New Item</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <form>
+                  
+                  <div class="form-group">
+                    <div class="row">
+                       
+                      <div class="col-md-6">
+                    <label class="bmd-label-floating" id="feild">Item ID</label>
+                    <input type="text" class="form-control" id="input1" ng-model="itemCount" readonly>
+                  </div>
+                  <div class="col-md-6">
+                      <label class="bmd-label-floating" id="feild">Supplier ID</label>
+                      <input type="text" class="form-control" id="input1" value="2" readonly>
+                    </div>
+                  </div>
+                  </div>
+
+                  <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group bmd-form-group">  
+                    <label class="bmd-label-floating" id="feild">Material Name</label>
+                    <input type="text" class="form-control" id="input1" ng-model="new_item" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group bmd-form-group" >  
+                      <label class="bmd-label-floating" id="feild">Price -/Unit</label>
+                      <input type="number" class="form-control" id="input1" ng-model="new_price" ng-minlength="1" ng-maxlength="3" min="1" max="999">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group bmd-form-group">  
+                    <label class="bmd-label-floating" id="feild">Quantity</label>
+                    <input type="number" class="form-control" id="input1" ng-model="new_quantity" ng-minlength="1" ng-maxlength="3" min="1" max="999">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group bmd-form-group" >  
+                      <label class="bmd-label-floating" id="feild">Description</label>
+                      <input type="text" class="form-control" id="input1" ng-model="new_desc" required>
+                    </div>
+                  </div>
+                </div>
+
+                </form>
+
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub" data-dismiss="modal" ng-click="addNewItem(itemCount,'2',new_item,new_price,new_quantity,new_desc)">Submit</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="sub">Close</button>
+          </div>    
+          </div>                
+          
+        </div>
+      </div>
+    </div>
+       
+       
+        </body>
+</html>
